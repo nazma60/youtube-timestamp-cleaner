@@ -1,28 +1,17 @@
-function hideTranscriptTimestamps() {
-  // Current transcript timestamp renderer
+function cleanTranscript() {
   document.querySelectorAll(
-    'ytd-transcript-segment-renderer .segment-timestamp'
-  ).forEach(el => {
-    el.style.display = 'none';
-  });
-
-  // Fallback for UI changes
-  document.querySelectorAll(
-    'ytd-transcript-segment-renderer [class*="timestamp"]'
-  ).forEach(el => {
-    el.style.display = 'none';
+    'ytd-transcript-segment-renderer'
+  ).forEach(segment => {
+    const timestamp = segment.querySelector('[class*="timestamp"]');
+    if (timestamp) {
+      timestamp.remove();
+    }
   });
 }
 
-// Run initially
-hideTranscriptTimestamps();
-
-// Watch for transcript panel opening
-const observer = new MutationObserver(() => {
-  hideTranscriptTimestamps();
-});
-
-observer.observe(document.body, {
+new MutationObserver(cleanTranscript).observe(document.body, {
   childList: true,
   subtree: true
 });
+
+cleanTranscript();
