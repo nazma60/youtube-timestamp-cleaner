@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "YouTube Transcript Cleaner",
-  "version": "1.0",
-  "description": "Hide timestamps in YouTube transcripts.",
+  "version": "2.0",
+  "description": "Toggle timestamps in YouTube transcripts",
   "content_scripts": [
     {
       "matches": ["https://www.youtube.com/*"],
